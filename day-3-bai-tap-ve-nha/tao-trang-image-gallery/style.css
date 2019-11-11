@@ -1,0 +1,46 @@
+body{
+	width: 100%;
+	margin: auto;
+}
+.banner{
+	width: 60%;
+	height:300px;
+	margin: auto;
+}
+.banner img{
+	max-height: 290px;
+}
+.nav-bar{
+	width: 60%;
+	height: 50px;
+	display: flex;
+	margin-left: 240px;
+	margin-right: 100px;
+}
+.nav-bar a{
+	width: 100%;
+	text-align: left;
+	text-decoration: none;
+	font-size: 25px;
+}
+.nav-bar a:hover{
+	background-color: blue;
+	color: red;
+}
+.products{
+	width: 60%;
+	margin-top: 10px;
+	margin-left: 200px;
+}
+p{
+	font-weight: bold;
+}
+.sp1 .sp2 .sp3{
+	display: flex;
+	width: 100%;
+}
+@media  only screen and (max-width:500px){
+	.products>img{
+		max-width:100%;
+	}
+}

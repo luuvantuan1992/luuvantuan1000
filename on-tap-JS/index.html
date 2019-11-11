@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ontap javascript</title>
+</head>
+<body>
+	<script>
+		//phan 1: xu li so
+		//b1:viết hàm tính thể tích hình cầu,với tham số truyền vào là bán kính hình cầu.
+		function theTichHinhCau(r){
+			return (Math.PI*4*Math.pow(r,3))/3;
+		}
+		theTichHinhCau(5);
+		//b2:viết hàm truyền vào 2 số nguyen,tính tổng các số nguyên nằm giữa chúng.
+		//ví dụ 3,8:tính tổng 4+5+6+7=22;
+		//c1:
+		function tinhTongGiua(a,b){
+			if(typeof a == "number" && typeof b == "number"){
+				var sum = 0;
+				let minNumber = Math.min(a,b);
+				let maxNumber = Math.max(a,b);
+				for(let i=minNumber+1;i<maxNumber;i++){
+					sum = sum + i;
+				}
+				return sum;
+			}else{
+				document.write("tham số truyền vào ko là số nguyên");
+			}
+		}
+		tinhTongGiua(0,9);
+		//c2:
+		function tinhTong(a,b){
+			if(a>b){
+				let tg = a;
+				a = b;
+				b = tg;
+			}
+			let x = 0;
+			for(let i=a+1;i<b;i++){
+				x = x + i;
+			}
+			return x;
+		}
+		tinhTong(4,8);
+		//c3:vẫn là tính tổng giữa nhưng chỉ tính tổng những số chẵn.
+		function tinhTongGiua(a,b){
+			let x = 0;
+			let minNumber = Math.min(a,b);
+			let maxNumber = Math.max(a,b);
+			for(let i = minNumber+1;i<maxNumber;i++){
+				if(i%2==0){
+					x = x + i;
+				}
+			}
+			return x;
+		}
+		tinhTongGiua(3,8);
+		//b3: cho 1 số,kiểm tra xem số đó có phải số nguyên tố hay ko? trả về True hoặc False
+		//c1:chưa đúng lắm.
+		function kiemTraSoNguyenTo(a){
+			var flag = true;
+			if(a < 2){
+				flag = false;
+			}else{
+				for(let i = 2;i <= a-1;i++){
+					if(a%i==0){
+						flag = false;
+						break;
+					}
+				}
+			}
+			if(flag == true){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		kiemTraSoNguyenTo(23);
+		//c2:
+		function kiemTraSoNguyenTo(x){
+			if(!Number.isInteger(x) || x < 2){
+				return false;
+			}
+			for(let i = 2;i < x; i++){
+				if(x % i ==0){
+					return false;
+					break;
+				}else{
+					return true;
+				}
+			}
+			if(true){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		kiemTraSoNguyenTo(21);
+		//b4:cho 1 so nguyen duong bat ky,tinh tong tat ca cac so nguyen to nho hon hoac bang tham so truyen vao
+		function ktrasnt(n) {
+  			//ktra xem có phải là so nguyen k? hoặc nho hơn 2 k phải là snt
+  			if (!Number.isInteger(n)|| n < 2) {
+  				return false;
+  			}
+   			// check so nguyen to khi n >= 2
+   			a = Math.sqrt(n); //a bằng căn bậc 2 của n.
+   			for (let i = 2; i <= a; i++) {
+   				if (n % i == 0) {
+   					return false;
+   				}
+   			}
+   			return true;
+   		}
+   		function tinhTongSoNguyenTo(n) {
+   			let sum = 0;
+   			for (let i = 2; i <= n; i++) {
+   				if ( ktrasnt(i)) {
+   					sum += i;//sum = sum + i;
+   				}
+   			}
+   			return sum;
+   		}
+   		document.write(tinhTongSoNguyenTo(13));
+		//b5: cho 1 so nguyen duong,tinh tong cac uoc so cua so do.
+		function tinhUocSo(a){
+			let sum = 0;
+			for(let i=1;i<=a;i++){
+				if(a%i==0){
+					sum = sum + i;
+				}
+			}
+			return sum;
+		}
+		tinhUocSo(10);
+
+		//phan 2: xu li chuoi.
+		//b1: chuyen 1 chuoi gom nhieu tu thanh chuoi moi viet hoa chu cai dau tien cua tu: vi du HELLO world ==> Hello World.
+		function vietHoaChuCaiDau(str){
+			let newstr = str.toLowerCase().split(" ");
+			for(let i=0;i<newstr.length;i++){
+				newstr[i] = newstr[i].charAt(0).toUpperCase() + newstr[i].slice(1);
+			}
+			return newstr.join(" ");
+		}
+		vietHoaChuCaiDau("laquy thi Dongson DOnghung");
+		 //b2:chuyen 1 chuoi gom nhieu tu thanh dang spinal case vi dụ hello world ==> hello-world.
+		 function chuyenChuoi(str) {
+		 	var splitStr = str.toLowerCase().split(' ');
+		 	return splitStr.join('-');
+		 }
+		 console.log(chuyenChuoi("hello world"));
+		 //c2:dung regex
+		 function spinalCase(str){
+		 	return str = str.toLowerCase().replace(/ /g,"-");
+		 }
+		 spinalCase("hello wworldlfd");
+		 //b4:cho 1 chuoi,kiem tra xem do co phai la 1 chuoi doi xung hay ko.
+		function kiemTraChuoi(str){
+			let kq = true;
+			let str1 = str.toLowerCase().split(" ");
+			let str2 = str1.join("");
+			for(let i=0;i<str2.length;i++){
+				if(str2[i] !== str2[str2.length - 1 - i]){
+					kq = false;
+					break;
+				}
+			}
+			return kq;
+			if(kq == true){
+				document.write(str2 + " la chuoi doi xung");
+			}else{
+				document.write(str2 + " ko la chuoi doi xung");
+			}
+		}
+		kiemTraChuoi("Race car");
+
+		function kiemTraChuoi(str){
+			let kq = true;
+			let str1 = str.toLowerCase().split(" ");//chuyen chuoi ve dang in thuong + tach chuoi vd : Race car ==> r a c e c a r
+			let str2 = str1.join(""); //noi chuoi vua tach vd : r a c e c a r => racecar
+			for(let i=0;i<str2.length;i++){
+				if(str2[i] !== str2[str2.length - 1 - i]){
+					kq = false;
+					break;
+				}
+			}
+			if(kq == true){
+				document.write(str + " la chuoi doi xung");
+			}else{
+				document.write(str + " ko la chuoi doi xung");
+			}
+		}
+		kiemTraChuoi("Race car");
+		 
+		 //cách này mưới test đúng ở những chuỗi ko có khoảng trắng.
+		function kiemTraChuoi(str){
+			let kq = true;
+			for(let i=0;i<str.length;i++){
+				if(str[i] !== str[str.length - 1 - i]){
+					kq = false;
+					break;
+				}
+			}
+			return kq;
+			if(kq == true){
+				document.write(str + " la chuoi doi xung");
+			}else{
+				document.write(str + " ko la chuoi doi xung");
+			}
+		}
+		kiemTraChuoi("1001");
+
+		 //phan 4: object
+		 //bai 3: viet ham sap xep lai mang theo tuoi hoc vien tu cao den thap
+
+		 var student = [
+		 {name:"Trang", age:23, gender: "FeMale"},
+		 {name:"Anh", age:12, gender: "Male"},
+		 {name:"Thi", age:28, gender: "Male"}
+		 ];
+		 student.sort(function(a, b){return b.age - a.age});
+
+		 document.write("<p>" + student[0].name + " - " + student[0].age + "</p>");
+		 document.write("<p>" + student[1].name + " - " + student[1].age + "</p>");
+		 document.write("<p>" + student[2].name + " - " + student[2].age + "</p>");
+
+		 
+		 //tong hop
+		 //b1:cho 2 so a,b.viet ham giai phuong trinh bac nhat dang ax+b=0
+		 function ptBacNhat(a, b)
+		 {
+		 	if (a == 0 && b == 0){
+		 		document.write('Phương trình vô số nghiệm');
+		 	}
+		 	else if (a != 0 && b == 0){
+		 		document.write('Phương trình có nghiệm x = 0');
+		 	}
+		 	else if (a == 0 && b != 0){
+		 		document.write("Phương trình vô nghiệm");
+		 	}
+		 	else {
+		 		document.write('Phương trình có nghiệm x = ' + (-b/a));
+		 	}
+		 }
+		 ptBacNhat(2,2);
+		//b2:cho 3 so a,b,c.viet ham giai phuong trinh bac 2 dang ax^2+bx+c=0;
+		function ptBacHai(a,b,c){
+			if(a==0){
+				if(b==0){
+					if(c==0){
+						document.write("phương trình vô số nghiệm");
+					}
+					else{
+						document.write("phương trình vô nghiệm");
+					}
+				}
+				else{
+					document.write("phương trình có nghiệm duy nhất: x = " + (-c/b));
+				}
+			}
+			else{
+				let str=b*b-4*a*c;
+				if(str>0){
+					x1 = (-b+(str))/(2*a);
+					x2 = (-b-(str))/(2*a);
+					document.write("Nghiệm thứ nhất x1 =" + x1 +"<br>");
+					document.write("Nghiệm thứ nhất x2 =" + x2);
+				}
+				else if ( str == 0) {
+					document.write("phương trình có nghiệm kép: x1 = x2 = " + -b/2*a);
+				} else {
+					document.write("phương trình vô nghiệm");
+				}
+			}
+			return 0;
+		}
+		ptBacHai(14,-10,8);
+	</script>
+</body>
+</html>
